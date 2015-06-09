@@ -44,6 +44,10 @@ public class ExampleTeleopArcadeAndServos extends OpMode {
         //get references to the servos from the hardware map
         arm = hardwareMap.servo.get("servo_1");
         claw = hardwareMap.servo.get("servo_6");
+
+        //initialize the servos to a known position
+        arm.setPosition(ARM_UP_POSITION);
+        claw.setPosition(CLAW_OPEN_POSITION);
     }
 
 
