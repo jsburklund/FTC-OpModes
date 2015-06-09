@@ -40,8 +40,9 @@ public class ExampleTeleopTankMode extends OpMode {
     @Override
     public void loop() {
         //get the values from the gamepads
-        float leftY = gamepad1.right_stick_y;
-        float rightY = gamepad1.left_stick_y;
+        //note: pushing the stick all the way up returns -1, so we need to reverse the values
+        float leftY = -gamepad1.left_stick_y;
+        float rightY = -gamepad1.right_stick_y;
 
         //set the power of the motors with the gamepad values
         leftMotor.setPower(leftY);
