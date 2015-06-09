@@ -54,8 +54,9 @@ public class ExampleTeleopArcadeAndServos extends OpMode {
     @Override
     public void loop() {
         //get the values from the gamepads
-        float xValue = gamepad1.right_stick_y;
-        float yValue = gamepad1.left_stick_y;
+        //note: pushing the stick all the way up returns -1, so we need to reverse the y values
+        float xValue = gamepad1.left_stick_x;
+        float yValue = -gamepad1.left_stick_y;
 
         //calculate the power needed for each motor
         float leftPower = yValue + xValue;
