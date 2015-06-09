@@ -65,6 +65,8 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("Teleop: Arcade", ExampleTeleopArcadeMode.class);
     manager.register("Teleop: Arcade and Servos", ExampleTeleopArcadeAndServos.class);
     manager.register("Sandbox", Sandbox.class);
+    manager.register("Auto: Drive W Encoders", ExampleAutoDriveWEncoders.class);
+    manager.register("Phil's RSL", PhilsRSLOp.class);
     /*
     manager.register("IrSeekerOp", IrSeekerOp.class);
     manager.register("CompassCalibration", CompassCalibration.class);
