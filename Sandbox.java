@@ -28,10 +28,11 @@ public class Sandbox extends OpMode {
     @Override
     public void start() {
         rightMotor = hardwareMap.dcMotor.get("motor_2");
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
         rightMotor.setTargetPosition(TARGET_POSITION);
         rightMotor.setChannelMode(DcMotorController.RunMode.RUN_TO_POSITION);
-        rightMotor.setPower(0.75);
+        rightMotor.setPower(- 0.75);
 
     }
 
