@@ -1,15 +1,13 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
-import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 
 /**
  * Created by Jordan Burklund on 6/9/2015.
  */
-public class PhilsRSLOp {
-    private String startDate;
-    private ElapsedTime runtime = new ElapsedTime();
+public class PhilsRSLOp extends OpMode {
 
     private Camera camera;
     private Parameters parm;
@@ -39,8 +37,6 @@ public class PhilsRSLOp {
      */
     @Override
     public void loop() {
-        telemetry.addData("1 Start", "NullOp started at " + startDate);
-        telemetry.addData("2 Status", "running for " + runtime.toString());
 
         // Blink the LED.
         blink();
