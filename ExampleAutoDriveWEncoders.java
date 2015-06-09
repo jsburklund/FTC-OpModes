@@ -18,7 +18,7 @@ public class ExampleAutoDriveWEncoders extends OpMode {
     int RIGHT_TARGET_FORWARD = 2*1440;
     int THRESHOLD = 10;
 
-    enum State {StartEncoders, WaitUntilInPosition, Done};
+    enum State {ResetEncoders, StartEncoders, WaitUntilInPosition, Done};
     State state;
 
     /*
@@ -38,7 +38,7 @@ public class ExampleAutoDriveWEncoders extends OpMode {
         rightMotor = hardwareMap.dcMotor.get("motor_2");
 
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
-        state = State.StartEncoders;
+        state = State.ResetEncoders;
 
     }
 
@@ -51,6 +51,15 @@ public class ExampleAutoDriveWEncoders extends OpMode {
     public void loop() {
 
         switch(state) {
+            case ResetEncoders:
+                //Reset both encoders
+                leftMotor.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
+                rightMotor.setChannelMode(DcMotorController.RunMode.RESET_ENCODERS);
+
+                //Transition to the next state
+                state = State.StartEncoders;
+                break;
+
             case StartEncoders:
                 //Set the target position to run the motors to
                 leftMotor.setTargetPosition(LEFT_TARGET_FORWARD);
@@ -76,6 +85,10 @@ public class ExampleAutoDriveWEncoders extends OpMode {
                 //Check if the motors are close enough to being in position
                 boolean leftIsInPos = isAtTargetThreshold(LEFT_TARGET_FORWARD, currLeftPos, THRESHOLD);
                 boolean rightIsInPos = isAtTargetThreshold(RIGHT_TARGET_FORWARD, currRightPos, THRESHOLD);
+
+                //Display if each motor is in position
+                telemetry.addData("linpos", "Is left in position?: " + leftIsInPos);
+                telemetry.addData("rinpos", "Is right in position?: " + rightIsInPos);
 
                 //If the motors are in position, transition to the next state
                 if(leftIsInPos && rightIsInPos) {
