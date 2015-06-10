@@ -34,10 +34,14 @@ public class ExampleAutoDriveWEncoders extends OpMode {
     */
     @Override
     public void start() {
+        //get references to the motors from the hardware map
         leftMotor = hardwareMap.dcMotor.get("motor_1");
         rightMotor = hardwareMap.dcMotor.get("motor_2");
-
+        
+        //reverse the left motor
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
+        
+        //set the first state to go to
         state = State.ResetEncoders;
 
     }
@@ -97,6 +101,8 @@ public class ExampleAutoDriveWEncoders extends OpMode {
                 break;
 
             case Done:
+                //Idle and do nothing.  The motors will continue to hold their position,
+                //unless the channel mode is changed, and/or the motor power is set to 0.
                 break;
         }
 
