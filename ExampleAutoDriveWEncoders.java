@@ -18,7 +18,7 @@ public class ExampleAutoDriveWEncoders extends OpMode {
     int RIGHT_TARGET_FORWARD = 2*1440;
     int THRESHOLD = 10;
 
-    enum State {ResetEncoders, StartEncoders, WaitUntilInPosition, Done};
+    enum State {ResetEncoders, StartEncoders, WaitUntilInPosition, OptionalStopMotors, Done};
     State state;
 
     /*
@@ -97,12 +97,22 @@ public class ExampleAutoDriveWEncoders extends OpMode {
                 //If the motors are in position, transition to the next state
                 if(leftIsInPos && rightIsInPos) {
                     state = State.Done;
+                    //Uncomment the following line if you want the robot to just stop
+                    //instead of holding position
+                    //state = State.OptionalStopMotors;
                 }
                 break;
 
+            case OptionalStopMotors:
+                //This is an optional state to tell the motor to stop moving completely
+                //If the power is not set to 0, the encoders will just hold their position
+                leftMotor.setPower(0);
+                rightMotor.setPower(0);
+                state = State.Done;
+                break;
+
             case Done:
-                //Idle and do nothing.  The motors will continue to hold their position,
-                //unless the channel mode is changed, and/or the motor power is set to 0.
+                //Idle and do nothing.
                 break;
         }
 
