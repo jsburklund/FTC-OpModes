@@ -59,14 +59,20 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("K9TeleOp", K9TeleOp.class);
     manager.register("K9TankDrive", K9TankDrive.class);
     manager.register("K9Line", K9Line.class);
-    manager.register("K9IrSeeker", K9IrSeeker.class);
-    manager.register("K9AutoTime", K9AutoTime.class);
-    manager.register("Teleop: Tank", ExampleTeleopTankMode.class);
-    manager.register("Teleop: Arcade", ExampleTeleopArcadeMode.class);
-    manager.register("Teleop: Arcade and Servos", ExampleTeleopArcadeAndServos.class);
-    manager.register("Sandbox", Sandbox.class);
+    //manager.register("K9IrSeeker", K9IrSeeker.class);
+    //manager.register("K9AutoTime", K9AutoTime.class);
+    //manager.register("Teleop: Tank", ExampleTeleopTankMode.class);
+    //manager.register("Teleop: Arcade", ExampleTeleopArcadeMode.class);
+    //manager.register("Teleop: Arcade and Servos", ExampleTeleopArcadeAndServos.class);
+    //manager.register("Sandbox", Sandbox.class);
     manager.register("Auto: Drive W Encoders", ExampleAutoDriveWEncoders.class);
     manager.register("Phil's RSL", PhilsRSLOp.class);
+    manager.register("Teleop Timing", TeleopTiming.class);
+    manager.register("Sensor List", SensorList.class);
+    manager.register("Show Orientation",ShowOrientation.class);
+    manager.register("File Write Test",FileWriteTest.class);
+    manager.register("File Read Test", FileReadTest.class);
+    manager.register("File Buffered Read", FileBufferedReadTest.class);
     /*
     manager.register("IrSeekerOp", IrSeekerOp.class);
     manager.register("CompassCalibration", CompassCalibration.class);
