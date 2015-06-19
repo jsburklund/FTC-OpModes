@@ -73,6 +73,9 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("File Write Test",FileWriteTest.class);
     manager.register("File Read Test", FileReadTest.class);
     manager.register("File Buffered Read", FileBufferedReadTest.class);
+    manager.register("Stay Inside Circle", ExampleStayInsideCircle.class);
+    manager.register("Follow Line: Paired Sensor", ExampleFollowLinePairedSensor.class);
+    manager.register("Follow Line: Sensor Difference", ExampleFollowLineSensorDifference.class);
     /*
     manager.register("IrSeekerOp", IrSeekerOp.class);
     manager.register("CompassCalibration", CompassCalibration.class);

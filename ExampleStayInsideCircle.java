@@ -2,31 +2,35 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.LightSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * An empty op mode serving as a template for custom OpModes
  */
-public class ExampleDriveWTouchBackupTurn extends OpMode {
-
+public class ExampleStayInsideCircle extends OpMode {
     DcMotor leftMotor;
     DcMotor rightMotor;
-    //TouchSensor touchSensor;
+    LightSensor lightSensor;
     ElapsedTime timer;
 
-    //Robot states
-    enum State{Drive, Backup, Turn}
+    //Light Sensor constants
+    double lightValue = 0.9;
+    double darkValue = 0.3;
+    double threshold = (lightValue+darkValue) / 2;
+
+    //Robot States
+    enum State {Drive, Backup, Turn}
     State state;
 
-    //Time constants
-    double BACKUP_TIME = 1.0;
+    //Time Constants
+    double BACKUP_TIME = 0.5;
     double TURN_TIME = 0.25;
-
 
     /*
     * Constructor
     */
-    public ExampleDriveWTouchBackupTurn() {
+    public ExampleStayInsideCircle() {
 
     }
 
@@ -43,11 +47,14 @@ public class ExampleDriveWTouchBackupTurn extends OpMode {
         //reverse the left motor
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
-        //get a reference to the touch sensor
-        //touchSensor = hardwareMap.touchSensor.get("touch");
+        //turn the red LED on the light sensor on
+        lightSensor.enableLed(true);
 
-        //set the state to driving
+        //set the initial state
         state = State.Drive;
+
+        //set up the timer
+        timer = new ElapsedTime();
     }
 
 
@@ -57,37 +64,42 @@ public class ExampleDriveWTouchBackupTurn extends OpMode {
     */
     @Override
     public void loop() {
+        //Get the amount of reflected light as a value from 0 to 1
+        double reflectance = 1.0-lightSensor.getLightLevel();
+
+        //Run the appropriate case based on the current state
         switch(state) {
             case Drive:
-                //Set the motors to drive forward at 50% power
-                leftMotor.setPower(0.5);
-                rightMotor.setPower(0.5);
-
-                /*//Switch states if the touch sensor is pressed
-                if(touchSensor.isPressed()) {
+                //Check if the light sensor detects the line, stop, and switch states
+                if(reflectance < threshold) {
+                    leftMotor.setPower(0);
+                    rightMotor.setPower(0);
                     state = State.Backup;
                     //reset the timer for backing up
                     timer.reset();
-                }*/
+                } else {
+                    //Otherwise, Set the motors to drive forward slowly
+                    leftMotor.setPower(0.1);
+                    rightMotor.setPower(0.1);
+                }
                 break;
             case Backup:
-                //Set the motors to drive backwards at 25% power
-                leftMotor.setPower(0.25);
-                rightMotor.setPower(0.25);
+                //Set the motors to drive backwards
+                leftMotor.setPower(-0.25);
+                rightMotor.setPower(-0.25);
 
-                //switch states when it has backed up for a set amount of time
+                //Check if the time to back up is complete, and switch states to turning
                 if(timer.time() >= BACKUP_TIME) {
                     state = State.Turn;
-                    //reset the timer for turning
                     timer.reset();
                 }
                 break;
             case Turn:
-                //Set the motors to turn the robot right at 25% power
-                leftMotor.setPower(0.25);
-                rightMotor.setPower(0.25);
+                //Set the motors to turn the robot right
+                leftMotor.setPower(0.15);
+                rightMotor.setPower(-0.15);
 
-                //switch states when it has turned for a set amount of time
+                //Check if the time to turn is complete, and switch states back to driving
                 if(timer.time() >= TURN_TIME) {
                     state = State.Drive;
                 }
@@ -95,6 +107,7 @@ public class ExampleDriveWTouchBackupTurn extends OpMode {
         }
 
         telemetry.addData("state", "Current State: " + state.name());
+        telemetry.addData("reflectance", "Reflectance Value: " + reflectance);
     }
 
     /*

@@ -11,7 +11,7 @@ public class ExampleDriveWTouchBackupTurnRandom extends OpMode {
 
     DcMotor leftMotor;
     DcMotor rightMotor;
-    TouchSensor touchSensor;
+    //TouchSensor touchSensor;
     ElapsedTime timer;
 
     //Robot states
@@ -44,7 +44,7 @@ public class ExampleDriveWTouchBackupTurnRandom extends OpMode {
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //get a reference to the touch sensor
-        touchSensor = hardwareMap.touchSensor.get("touch");
+        //touchSensor = hardwareMap.touchSensor.get("touch");
 
         //set the state to driving
         state = State.Drive;
@@ -63,12 +63,12 @@ public class ExampleDriveWTouchBackupTurnRandom extends OpMode {
                 leftMotor.setPower(0.5);
                 rightMotor.setPower(0.5);
 
-                //Switch states if the touch sensor is pressed
+                /*//Switch states if the touch sensor is pressed
                 if(touchSensor.isPressed()) {
                     state = State.Backup;
                     //reset the timer for backing up
                     timer.reset();
-                }
+                }*/
                 break;
             case Backup:
                 //Set the motors to drive backwards at 25% power
@@ -87,7 +87,7 @@ public class ExampleDriveWTouchBackupTurnRandom extends OpMode {
             case Turn:
                 //Set the motors to turn the robot right at 25% power
                 leftMotor.setPower(0.25);
-                rightMotor.setPower(0.25);`
+                rightMotor.setPower(0.25);
 
                 //switch states when it has turned for a set amount of time
                 if(timer.time() >= turnTime) {

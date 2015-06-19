@@ -10,7 +10,7 @@ public class ExampleDriveWTouch extends OpMode {
 
     DcMotor leftMotor;
     DcMotor rightMotor;
-    TouchSensor touchSensor;
+    //TouchSensor touchSensor;
 
     /*
     * Constructor
@@ -33,7 +33,7 @@ public class ExampleDriveWTouch extends OpMode {
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         //get a reference to the touch sensor
-        touchSensor = hardwareMap.touchSensor.get("touch");
+        //touchSensor = hardwareMap.touchSensor.get("touch");
     }
 
 
@@ -44,7 +44,7 @@ public class ExampleDriveWTouch extends OpMode {
     @Override
     public void loop() {
 
-        if(touchSensor.isPressed()) {
+        /*if(touchSensor.isPressed()) {
             //Stop the motors if the touch sensor is pressed
             leftMotor.setPower(0);
             rightMotor.setPower(0);
@@ -52,7 +52,7 @@ public class ExampleDriveWTouch extends OpMode {
             //Keep driving if the touch sensor is not pressed
             leftMotor.setPower(0.5);
             rightMotor.setPower(0.5);
-        }
+        }*/
 
     }
 
