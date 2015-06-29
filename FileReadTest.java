@@ -31,7 +31,6 @@ public class FileReadTest extends OpMode {
     @Override
     public void start() {
         //set the text to an empty string;
-        text = "";
 
         //Declare the filepath to read from
         inputFile = new File("/sdcard/testout.txt");
