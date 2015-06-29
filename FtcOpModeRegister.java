@@ -34,6 +34,8 @@ package com.qualcomm.ftcrobotcontroller.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 
+import java.security.acl.NotOwnerException;
+
 /**
  * Register Op Modes
  */
@@ -57,8 +59,8 @@ public class FtcOpModeRegister implements OpModeRegister {
 
     manager.register("NullOp", NullOp.class);
     manager.register("K9TeleOp", K9TeleOp.class);
-    manager.register("K9TankDrive", K9TankDrive.class);
-    manager.register("K9Line", K9Line.class);
+    //manager.register("K9TankDrive", K9TankDrive.class);
+    //manager.register("K9Line", K9Line.class);
     //manager.register("K9IrSeeker", K9IrSeeker.class);
     //manager.register("K9AutoTime", K9AutoTime.class);
     //manager.register("Teleop: Tank", ExampleTeleopTankMode.class);
@@ -68,7 +70,7 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("Auto: Drive W Encoders", ExampleAutoDriveWEncoders.class);
     manager.register("Phil's RSL", PhilsRSLOp.class);
     manager.register("Teleop Timing", TeleopTiming.class);
-    manager.register("Sensor List", SensorList.class);
+    //manager.register("Sensor List", SensorList.class);
     manager.register("Show Orientation",ShowOrientation.class);
     manager.register("File Write Test",FileWriteTest.class);
     manager.register("File Read Test", FileReadTest.class);
@@ -76,6 +78,8 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("Stay Inside Circle", ExampleStayInsideCircle.class);
     manager.register("Follow Line: Paired Sensor", ExampleFollowLinePairedSensor.class);
     manager.register("Follow Line: Sensor Difference", ExampleFollowLineSensorDifference.class);
+    manager.register("Notifications", Notifications.class);
+    manager.register("FrankenVex Teleop", FrankenVexTeleop.class);
     /*
     manager.register("IrSeekerOp", IrSeekerOp.class);
     manager.register("CompassCalibration", CompassCalibration.class);
