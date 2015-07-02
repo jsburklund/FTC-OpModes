@@ -47,7 +47,8 @@ public class ExampleStayInsideCircle extends OpMode {
         //reverse the left motor
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
-        //turn the red LED on the light sensor on
+        //get the reference, and turn the red LED on the light sensor on
+        lightSensor = hardwareMap.lightSensor.get("lightsensor_left");
         lightSensor.enableLed(true);
 
         //set the initial state
